@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  portainer:
+    image: portainer/portainer
+    ports:
+      - "9000:9000"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/mnt/StorageDrive/Portainer:/data"
+    deploy:
+      placement:
+        constraints: [ node.role == manager ]
+    networks:
+      - proxy
+
+  reverse-proxy:
+    image: reverseproxy:latest
+    ports:
+      - "80:80"
+    networks:
+      - proxy
+  api:
+    image: backend:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+    networks:
+      - proxy
+
+networks:
+  proxy:
