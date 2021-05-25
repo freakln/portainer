@@ -28,7 +28,7 @@ services:
     networks:
       - proxy
   frontend:
-    image: testend:latest
+    image: freakln/frontend:latest
     ports:
       - "4200:4200"
     networks:
