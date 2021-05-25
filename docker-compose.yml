@@ -27,6 +27,12 @@ services:
       - PORT=8080
     networks:
       - proxy
+  frontend:
+    image: testend:latest
+    ports:
+      - "4200:4200"
+    networks:
+      - proxy
 
 networks:
   proxy:
