@@ -17,6 +17,8 @@ services:
     image: reverseproxy:latest
     ports:
       - "80:80"
+    volumes:
+      - /home/silva/repos/portainer/database:/app/database
     networks:
       - proxy
   api:
