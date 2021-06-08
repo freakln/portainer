@@ -17,12 +17,14 @@ services:
     image: reverseproxy:latest
     ports:
       - "80:80"
-    volumes:
-      - /home/silva/repos/portainer/database:/app/database
     networks:
       - proxy
+    volumes:
+      - ./data/certs-data/:/data/letsencrypt/
   api:
     image: backend:latest
+    volumes:
+      - /home/silva/repos/portainer/database:/app/database
     ports:
       - "8080:8080"
     environment:
